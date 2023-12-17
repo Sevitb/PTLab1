@@ -5,6 +5,8 @@ import sys
 
 from CalcRating import CalcRating
 from TextDataReader import TextDataReader
+from YAMLDataReader import YAMLDataReader
+from HandleData import HandleData
 
 
 def get_path_from_arguments(args) -> str:
@@ -18,12 +20,18 @@ def get_path_from_arguments(args) -> str:
 def main():
     path = get_path_from_arguments(sys.argv[1:])
 
-    reader = TextDataReader()
-    students = reader.read(path)
-    print("Students: ", students)
+    yamlReader = YAMLDataReader()
+    dataHandler = HandleData()
 
-    rating = CalcRating(students).calc()
-    print("Rating: ", rating)
+    studenstList = yamlReader.read(path)
+    print(dataHandler.filterByMark(studenstList))
+
+    # reader = TextDataReader()
+    # students = reader.read(path)
+    # print("Students: ", students)
+
+    # rating = CalcRating(students).calc()
+    # print("Rating: ", rating)
 
 
 if __name__ == "__main__":
