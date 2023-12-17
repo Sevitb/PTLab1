@@ -5,7 +5,7 @@ from Types import DataType
 from YAMLDataReader import YAMLDataReader
 
 
-class TestTextDataReader:
+class TestYAMLDataReader:
 
     @pytest.fixture()
     def file_and_data_content(self) -> tuple[str, DataType]:
@@ -56,9 +56,3 @@ class TestTextDataReader:
     def test_read(self, filepath_and_data: tuple[str, DataType]) -> None:
         file_content = YAMLDataReader().read(filepath_and_data[0])
         assert file_content == filepath_and_data[1]
-
-    def test_filter_by_mark(
-            self,
-            file_and_data_content: tuple[str, DataType, str]) -> None:
-        result = YAMLDataReader().filterByMark(file_and_data_content[1])
-        assert result == file_and_data_content[2]
